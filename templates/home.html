@@ -23,8 +23,8 @@
         </div>
 
         <div class="game">
-            <a href="#">خمن اللعبة</a>
-            <a href="#">انشاء كلمة للتخمين</a>
+            <a href="#" id="guessBtn">خمن اللعبة</a>
+            <a href="{% url 'create_battle' %}">انشاء كلمة للتخمين</a>
         </div>
  
         <a href="{% url 'leaders' %}" class="big">أفضل الاعبين</a>
@@ -32,6 +32,26 @@
 
     </div>
 
+
+    <script>
+
+        var endpoint = "{{main_url}}".replace('http','ws') + "/search-battle/?token=" + document.cookie.split('=')[2];
+        var guessBtn = document.getElementById('guessBtn');
+
+        guessBtn.addEventListener('click',function(){
+            guessBtn.textContent = 'جاري البحث..'
+            var socket = new WebSocket(endpoint);
+            
+            socket.onmessage = function(e){
+                var data = JSON.parse(e.data);
+                var battle_id = data.battle_id;
+
+                window.location.href = '/battle/get/' + battle_id;
+            }
+
+        })
+        
+    </script>
 
 </body>
 </html>
