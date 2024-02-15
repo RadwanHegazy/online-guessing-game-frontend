@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battle</title>
-    <link rel="stylesheet" href="style/battle.css">
+    <link rel="stylesheet" href="{% static 'style/battle.css' %}">
 </head>
 <body>
     
@@ -12,36 +13,57 @@
 
 
         <div class="user">
-            <img src="images/user.png" alt="">
-            <p>@Radawn Gaber</p>
+            <img src="{{main_url}}{{data.created_by.picture}}" alt="">
+            <p>@{{data.created_by.full_name}}</p>
         </div>
         
         <p>VS</p>
         
         <div class="user">
-            <img src="images/user.png" alt="">
-            <p>@Radawn Gaber</p>
+            <img src="{{main_url}}{{data.vs.picture}}" alt="">
+            <p>@{{data.vs.full_name}}</p>
         </div>
 
     </div>
 
     <div class="info">
-        <p>الكلمة تتكون من 10 حروف</p>
+        <p>الكلمة تتكون من {{data.word_len}} حروف</p>
         
-        <div class="in">Help Text Here 1</div>
-        <div class="in">Help Text Here 2</div>
-        
+        {% for i in data.help_text %}
+            <div class="in">{{i.text}}</div>
+        {% endfor %}
+
     </div>
 
 
-    <div class="cont">
-        <div class="in">
-            <p>ادخل اجابتك</p>
-            <input type="text">
-        </div>
-    
-        <button id="guess">تخمين</button>
-    </div>
+    {% if data.vs.full_name == c_user.full_name %}
 
+        <form class="cont" method="POST">
+            {% csrf_token %}
+            
+            <div class="in">
+                <p>ادخل اجابتك</p>
+                <input type="text" name="word" required>
+            </div>
+        
+            <button id="guess" type="word">تخمين</button>
+            
+        </form>
+    {% endif %}
+
+    <script>
+        var status = "{{status}}";
+
+        if (status){
+
+            if (status == "correct"){
+                alert('لقد كسبت 10 نقاط')
+            }else{
+                alert('لقد خسرت ال 10 نقاط')
+            }
+
+            window.location.href = '/';
+        }
+    </script>
 </body>
 </html>

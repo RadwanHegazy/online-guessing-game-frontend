@@ -1,15 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أنشاء كلمة للتخمين</title>
-    <link rel="stylesheet" href="style/create-word.css">
+    <link rel="stylesheet" href="{% static 'style/create-word.css' %}">
+    
 </head>
 <body>
     
     <div class="container">
-
+        <div class="layer"></div>
         <div class="in">
             <p>ادخل الكلمة</p>
             <input type="text" id="word" name="word">
@@ -25,6 +27,7 @@
         
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script>
         var form = new FormData();
@@ -58,10 +61,33 @@
                 doneBtn.classList.add('load')
                 doneBtn.disabled = true;
 
-                doneBtn.textContent = "جاري البحث عن منافس.."
+                doneBtn.textContent = "جاري البحث عن منافس.." ;
                 
-                
-                // send function in apis here
+                var layer = document.querySelector('.container .layer');
+                $.ajax({
+                    url:'.',
+                    method:"post",
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    data:form,
+                    success:function(res){
+                        console.log(res)
+                        layer.classList.add('view');
+                        var battle_id = res.id;
+
+                        console.log(battle_id)
+
+                        window.location.href = '/battle/get/' + battle_id;
+
+
+                    },
+                    error:function(error){
+                        console.log("error : ", error)
+                    }
+                })
+
+
 
             }else{
                 alert('الرجاء ادخال البيانات')
