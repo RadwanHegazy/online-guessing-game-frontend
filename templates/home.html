@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="{% static 'style/home.css' %}">
+</head>
+<body>
+    
+    
+    <div class="container">
+
+        <div class="img">
+            <img src="{{main_url}}{{c_user.picture}}" alt="">
+            <p>@{{c_user.full_name}}</p>
+        </div>
+
+        <div class="points">
+            <p>النقاط</p>
+            <p>{{c_user.points}}</p>
+        </div>
+
+        <div class="game">
+            <a href="#">خمن اللعبة</a>
+            <a href="#">انشاء كلمة للتخمين</a>
+        </div>
+ 
+        <a href="{% url 'leaders' %}" class="big">أفضل الاعبين</a>
+        <a href="{% url 'logout' %}" class="big">تسجيل الخروج</a>
+
+    </div>
+
+
+</body>
+</html>

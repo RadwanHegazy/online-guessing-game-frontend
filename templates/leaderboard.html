@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة أفضل الاعبين</title>
+    <link rel="stylesheet" href="{% static 'style/leaderbord.css' %}">
+</head>
+<body>
+    
+
+    <div class="container">
+
+        <div class="view">
+
+            {% for leader in leaders %}
+                <div class="user">
+                    <p>{{leader.full_name}}</p>
+                    <p>{{leader.points}}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'home' %}" class="back">الرجوع</a>
+    
+    </div>
+    
+
+</body>
+</html>

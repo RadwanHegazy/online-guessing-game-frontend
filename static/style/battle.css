@@ -1,0 +1,127 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --var-font:'Cairo',sans-serif;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #E3E3E3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+
+.up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.up .user {
+    padding: 1rem 1.3rem;
+    background-color: #fff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.up .user img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.up .user p {
+    font-family: var(--var-font);
+    font-size: 12px;
+    font-weight: bold;
+    color: #1BA5EC;
+}
+
+.info {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: var(--var-font);
+    color: #AFABAB;
+}
+
+.info .in {
+    width: 250px;
+    background-color: #fff;
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+}
+
+.cont {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.cont .in {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    direction: rtl;
+    height: auto;
+    font-family: var(--var-font);
+}
+
+.cont .in p {
+    color: #8D8181;
+    font-size: 15px;
+}
+
+.cont .in input {
+    height: 50px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    padding: 1rem 1.5rem;
+}
+
+
+.cont button {
+    width: 300px;
+    height: 45px;
+    border: none;
+    outline: none;
+    font-family: var(--var-font);
+    color: #fff;
+    background-color: #14F99D;
+    cursor: pointer;
+    border-radius: 12px;
+}

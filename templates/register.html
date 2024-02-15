@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انشاء حساب</title>
+    <link rel="stylesheet" href="{% static 'style/auth.css' %}">
+</head>
+<body>
+    
+
+    <form class="container" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="img">
+            <img id="imgView" src="{% static 'images/user.png' %}" alt="">
+            <a href="#" id="imgBtn">تغير الصورة</a>
+        </div>
+
+        <input type="file" name="picture" hidden id="imgFile">
+    
+        <div class="in">
+            <p>الاسم باالكامل</p>
+            <input type="text" name="full_name">
+        </div>
+
+        
+        <div class="in">
+            <p>البريد الالكتروني</p>
+            <input type="email" name="email">
+        </div>
+
+        <div class="in">
+            <p>كلمة المرور</p>
+            <input type="password" name="password">
+        </div>
+
+        <div class="btns">
+
+
+            <a href="{% url 'login' %}">لديك حساب بالفعل ؟</a>
+
+            <button type="submit">تسجيل</button>
+        
+        </div>
+
+
+    </form>
+
+    <script>
+        var imgBtn = document.getElementById('imgBtn');
+        var imgView = document.getElementById('imgView');
+        var imgFile = document.getElementById('imgFile');
+
+        imgBtn.addEventListener('click',function(){
+            imgFile.click()
+        })
+
+        imgFile.addEventListener('change',function(e){
+            imgView.src = URL.createObjectURL(e.target.files[0]);
+        })
+
+        if ("{{error}}"){
+            alert("{{error}}")
+        }
+    </script>
+</body>
+</html>

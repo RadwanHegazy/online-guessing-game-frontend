@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أنشاء كلمة للتخمين</title>
+    <link rel="stylesheet" href="style/create-word.css">
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="in">
+            <p>ادخل الكلمة</p>
+            <input type="text" id="word" name="word">
+        </div>
+        
+        <div class="in">
+            <p>ادخل وصف تقريبي لما تدل علية الكلمة ( <small id="count">0</small> )</p>
+            <input type="text" id="HText" name="word">
+            <button id="add">اضافة</button>
+        </div>
+        
+        <button id="done" >انشاء جلسة</button>
+        
+    </div>
+
+
+    <script>
+        var form = new FormData();
+
+        var add_help_text_btn = document.getElementById('add');
+        var help_text_input = document.getElementById('HText');
+        var counter = document.getElementById('count');
+        var count_int = 0;
+
+        add_help_text_btn.addEventListener('click',function(){
+            var val = help_text_input.value;
+
+            if (val) {
+                form.append('help_text',val)
+                count_int++
+                counter.innerHTML = count_int;
+                help_text_input.value = '';
+            }else{
+                alert('الرجاء ادخال البيانات')
+            }
+            
+        })
+
+
+        var word = document.getElementById('word');
+        var doneBtn = document.getElementById('done');
+
+        doneBtn.addEventListener('click',function(){
+            if(word.value) {
+                form.append('word',word.value)
+                doneBtn.classList.add('load')
+                doneBtn.disabled = true;
+
+                doneBtn.textContent = "جاري البحث عن منافس.."
+                
+                
+                // send function in apis here
+
+            }else{
+                alert('الرجاء ادخال البيانات')
+            }
+
+        })
+
+    </script>
+
+</body>
+</html>
